@@ -2,4 +2,5 @@
 
 function outlier() {
   
+  return this;
 }
