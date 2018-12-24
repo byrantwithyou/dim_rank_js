@@ -1,1 +1,8 @@
-bower_components/*
+
+# Created by Yunxin Sun
+
+
+# Latex
+proposal.*
+!proposal.pdf
+
