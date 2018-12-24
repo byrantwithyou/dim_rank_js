@@ -5,6 +5,13 @@
 
 function Data() {
   this.task = "";
+  this.preprocess = preprocess;
+  this.cluster = cluster;
+  this.outlier = outlier;
+  this.correlation = correlation;
+  this.numeric = [];
+  this.category = [];
+  this.values = [];
 }
 
 let data = new Data();
