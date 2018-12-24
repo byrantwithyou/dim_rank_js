@@ -22,10 +22,20 @@ function isNum(index, data, dim) {
 
   let col_data = jStat.col(data, index);
   
-  let cateProb = 0, dataEqlLength = true, uvPercent, isInteger = true;
+  let cateProb = 0, dataEqlLength = true, uvPercent, isInteger = true, dataLength = 0;
   uvPercent = new Set(col_data).size / col_data.length;
-  let dataLength = col_data[0].length;
+
+  for (let datum of col_data) {
+    if (datum != "") {
+      dataLength = datum.length;
+      break;
+    }
+  }
   
+  if (dataLength == 0) {
+    return false;
+  }
+
   //uvPercent: unique value percent
   //If the unique value percent is less than .35, there is more of a possibility that it is categorical
   if (uvPercent < 0.35) {
@@ -34,18 +44,21 @@ function isNum(index, data, dim) {
   
   for (let datum of col_data) {
     
-    //if there is a not number obj, return as category
-    if (!jStat.utils.isNumber(Number(datum))) {
-      return false;
+    if (datum != "") {
+      //if there is a not number obj, return as category
+      if (!jStat.utils.isNumber(Number(datum))) {
+        return false;
+      }
+
+      if (!Number.isInteger(Number(datum))) {
+        isInteger = false;
+      }
+
+      if (dataLength != datum.length) {
+        dataEqlLength = false;
+      }
     }
 
-    if (!Number.isInteger(Number(datum))) {
-      isInteger = false;
-    }
-
-    if (dataLength != datum.length) {
-      dataEqlLength = false;
-    }
   }
 
   //if it contains a float number, return true
