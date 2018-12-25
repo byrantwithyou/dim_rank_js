@@ -20,11 +20,14 @@ function isNum(index, data, dim) {
     return false;
   }
 
-  let col_data = jStat.col(data, index);
-  
+  let col_data = new Array();
+  for (let col_data_item of jStat.col(data, index)) {
+    if (col_data_item != "") {
+      col_data.push(col_data_item[0]);
+    }
+  }
   let cateProb = 0, dataEqlLength = true, uvPercent, isInteger = true, dataLength = 0;
   uvPercent = new Set(col_data).size / col_data.length;
-
   for (let datum of col_data) {
     if (datum != "") {
       dataLength = datum.length;
@@ -67,7 +70,7 @@ function isNum(index, data, dim) {
   }
 
   //If all the data items are equal length, there is more of a possibility that it is categorical
-  if (dataEqlLength) {
+  if (dataEqlLength) { 
     cateProb += 1;
   }
   
