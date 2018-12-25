@@ -82,6 +82,7 @@ function preprocess(file) {
   let that = this;
   Papa.parse(file, {
     complete: function (results) {
+      console.log(file.name);
       let rows = jStat(results.data).rows();
       that.values = results.data.slice(1, rows);
       that.dimensions = results.data.slice(0, 1)[0];
@@ -101,24 +102,24 @@ function preprocess(file) {
       let task = document.getElementById("task").value;
       switch (task) {
         case "outlier":
-          console.log("Numerics:");
-          console.log(that.outlier().numeric);
-          console.log("Categorical:");
-          console.log(that.category);
+          // console.log("Numerics:");
+          // console.log(that.outlier().numeric);
+          // console.log("Categorical:");
+          // console.log(that.category);
           break;
         case "cluster":
-          console.log("Numerics:");
-          console.log(that.cluster().numeric);
-          console.log("Categorical:");
-          console.log(that.category);
+          // console.log("Numerics:");
+          // console.log(that.cluster().numeric);
+          // console.log("Categorical:");
+          // console.log(that.category);
           break;
         case "correlation":
-          console.log("Numerics:");
-          console.log(that.correlation().numeric);
-          console.log("Categorical");
-          console.log(that.category);
+          // console.log("Numerics:");
+          // console.log(that.correlation().numeric);
+          // console.log("Categorical");
+          // console.log(that.category);
           break;
-        default: console.log("Wrong Task!");
+        default: ;//console.log("Wrong Task!");
       }
       
     }
